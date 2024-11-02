@@ -6,23 +6,6 @@ sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
 # TTYD 免登录
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
-# Dae大鹅配置
-sed -i '$ a\
-\
-define KernelPackage/xdp-sockets-diag\
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)\
-  TITLE:=PF_XDP sockets monitoring interface support for ss utility\
-  KCONFIG:= \
-\tCONFIG_XDP_SOCKETS=y \
-\tCONFIG_XDP_SOCKETS_DIAG\
-  FILES:=$(LINUX_DIR)/net/xdp/xsk_diag.ko\
-  AUTOLOAD:=$(call AutoLoad,31,xsk_diag)\
-endef\n\
-define KernelPackage/xdp-sockets-diag/description\
- Support for PF_XDP sockets monitoring interface used by the ss tool\
-endef\n\
-$(eval $(call KernelPackage,xdp-sockets-diag))' package/kernel/linux/modules/netsupport.mk
-
 # 移除要替换的包
 rm -rf feeds/packages/net/smartdns
 rm -rf feeds/packages/net/v2ray-geodata
@@ -55,10 +38,10 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # 魔法网络
-git clone --depth=1 https://github.com/QiuSimons/luci-app-daed package/dae
 git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo luci-app-mihomo mihomo
 git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
 git_sparse_clone master https://github.com/kenzok8/small chinadns-ng sing-box
+git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Theme主题
 git clone --depth=1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
