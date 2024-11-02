@@ -51,6 +51,9 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 # Alist
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
+# AdGuardHome
+git_sparse_clone https://github.com/kenzok8/openwrt-packages
+
 # 魔法网络
 git clone --depth=1 https://github.com/QiuSimons/luci-app-daed package/dae
 git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo luci-app-mihomo mihomo
