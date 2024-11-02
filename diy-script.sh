@@ -114,11 +114,11 @@ find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/
 # 在线更新配置
 echo -n "$(date +'%Y%m%d')" > package/base-files/files/etc/openwrt_version
 sed -i 's/Variable1 = "*.*"/Variable1 = "oppen321"/g' package/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
-sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt-Plus"/g' package/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
+sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt-23.05"/g' package/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 sed -i 's/Variable3 = "*.*"/Variable3 = "x86_64"/g' package/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 sed -i 's/Variable4 = "*.*"/Variable4 = "6.6"/g' package/luci-app-gpsysupgrade/luasrc/model/cbi/gpsysupgrade/sysupgrade.lua
 sed -i 's/Variable1 = "*.*"/Variable1 = "oppen321"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
-sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt-Plus"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
+sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt-23.05"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable3 = "*.*"/Variable3 = "x86_64"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable4 = "*.*"/Variable4 = "6.6"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 
