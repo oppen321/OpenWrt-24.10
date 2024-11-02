@@ -27,9 +27,8 @@ $(eval $(call KernelPackage,xdp-sockets-diag))' package/kernel/linux/modules/net
 rm -rf feeds/packages/net/smartdns
 rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/applications/luci-app-smartdns
-rm -rf feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,v2ray*,v2ray*,sing*,smartdns}
-rm -rf feeds/packages/utils/v2dat
+rm -rf feeds/luci/applications/luci-app-alist
+rm -rf feeds/packages/net/{alist,adguardhome,xray*,v2ray*,sing*,smartdns}
 rm -rf feeds/packages/lang/golang
 
 # Git稀疏克隆，只克隆指定目录到本地
@@ -41,3 +40,24 @@ function git_sparse_clone() {
   mv -f $@ ../package
   cd .. && rm -rf $repodir
 }
+
+# # golong1.23依赖
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+
+# Mosdns
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+# Alist
+git clone https://github.com/sbwml/luci-app-alist package/alist
+
+# 魔法网络
+git clone --depth=1 https://github.com/QiuSimons/luci-app-daed package/dae
+git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo luci-app-mihomo mihomo
+git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+
+# Theme主题
+git clone --depth=1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
+git clone --depth=1 https://github.com/oppen321/luci-theme-argon-config package/luci-app-argon-config
+
+# 
