@@ -52,7 +52,7 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-alist package/alist
 
 # AdGuardHome
-git_sparse_clone https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # 魔法网络
 git clone --depth=1 https://github.com/QiuSimons/luci-app-daed package/dae
