@@ -8,21 +8,20 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 
 # Daed大鹅配置
 sed -i '$ a\
-\n\
-define KernelPackage/xdp-sockets-diag\n\
-  SUBMENU:=$(NETWORK_SUPPORT_MENU)\n\
-  TITLE:=PF_XDP sockets monitoring interface support for ss utility\n\
-  KCONFIG:= \\\n\
-\tCONFIG_XDP_SOCKETS=y \\\n\
-\tCONFIG_XDP_SOCKETS_DIAG\n\
-  FILES:=$(LINUX_DIR)/net/xdp/xsk_diag.ko\n\
-  AUTOLOAD:=$(call AutoLoad,31,xsk_diag)\n\
+\
+define KernelPackage/xdp-sockets-diag\
+  SUBMENU:=$(NETWORK_SUPPORT_MENU)\
+  TITLE:=PF_XDP sockets monitoring interface support for ss utility\
+  KCONFIG:= \
+\tCONFIG_XDP_SOCKETS=y \
+\tCONFIG_XDP_SOCKETS_DIAG\
+  FILES:=$(LINUX_DIR)/net/xdp/xsk_diag.ko\
+  AUTOLOAD:=$(call AutoLoad,31,xsk_diag)\
 endef\n\
-define KernelPackage/xdp-sockets-diag/description\n\
- Support for PF_XDP sockets monitoring interface used by the ss tool\n\
+define KernelPackage/xdp-sockets-diag/description\
+ Support for PF_XDP sockets monitoring interface used by the ss tool\
 endef\n\
 $(eval $(call KernelPackage,xdp-sockets-diag))' package/kernel/linux/modules/netsupport.mk
-
 
 # 移除要替换的包
 rm -rf feeds/packages/net/smartdns
