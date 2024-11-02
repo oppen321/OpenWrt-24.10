@@ -38,10 +38,13 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # 魔法网络
-git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo luci-app-mihomo mihomo
 git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
-git_sparse_clone master https://github.com/kenzok8/small chinadns-ng sing-box
+git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
+git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo luci-app-mihomo mihomo
 
 # Theme主题
 git clone --depth=1 https://github.com/oppen321/luci-theme-argon package/luci-theme-argon
