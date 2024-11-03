@@ -27,6 +27,9 @@ function git_sparse_clone() {
 # golong1.23依赖
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
+# immortalwrt_luci
+
+
 # Mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
@@ -100,7 +103,7 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/luci-lib-d
 
 # 自定义设置
 mkdir -p package/base-files/files/etc/patches
-cp -f $GITHUB_WORKSPACE/patch/base-files/001-config_generate.patch package/base-files/files/etc/patches
+cp -f $GITHUB_WORKSPACE/patch/base-files/001-config_generate.patch package/base-files/files/etc/patches/
 
 #更改主机名
 mkdir -p package/base-files/files/bin/patches
@@ -133,16 +136,23 @@ sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt-24.10"/g' package/luci-app-gpsy
 sed -i 's/Variable3 = "*.*"/Variable3 = "x86_64"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable4 = "*.*"/Variable4 = "6.6"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 
+# Nginx
+sed -i "s/large_client_header_buffers 2 1k/large_client_header_buffers 4 32k/g" feeds/packages/net/nginx-util/files/uci.conf.template
+sed -i "s/client_max_body_size 128M/client_max_body_size 2048M/g" feeds/packages/net/nginx-util/files/uci.conf.template
+sed -i '/client_max_body_size/a\\tclient_body_buffer_size 8192M;' feeds/packages/net/nginx-util/files/uci.conf.template
+sed -i '/client_max_body_size/a\\tserver_names_hash_bucket_size 128;' feeds/packages/net/nginx-util/files/uci.conf.template
+sed -i '/ubus_parallel_req/a\        ubus_script_timeout 600;' feeds/packages/net/nginx/files-luci-support/60_nginx-luci-support
+sed -ri "/luci-webui.socket/i\ \t\tuwsgi_send_timeout 600\;\n\t\tuwsgi_connect_timeout 600\;\n\t\tuwsgi_read_timeout 600\;" feeds/packages/net/nginx/files-luci-support/luci.locations
+sed -ri "/luci-cgi_io.socket/i\ \t\tuwsgi_send_timeout 600\;\n\t\tuwsgi_connect_timeout 600\;\n\t\tuwsgi_read_timeout 600\;" feeds/packages/net/nginx/files-luci-support/luci.locations
+
 # wirdguard
 cp -f $GITHUB_WORKSPACE/patch/wireguard/* ./target/linux/generic/hack-6.6/
 
 # FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall/firewall4_patches/*.patch package/network/config/firewall4/patches/
-cp -f $GITHUB_WORKSPACE/patch/firewall/libnftnl/*
 mkdir -p feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall4/openwrt-24.10/*.patch feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches/
-mkdir -p package/network/config/firewall4/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch package/network/config/firewall4/patches/
 
 # intel-firmware
@@ -151,7 +161,7 @@ cp -f $GITHUB_WORKSPACE/patch/linux-firmware/*.patch package/firmware/linux-firm
 sed -i '/I915/d' target/linux/x86/64/config-6.6
 
 # Docker 容器
-mkdir -p feeds/package/utils/dockerd/files/patches
+mkdir -p feeds/packages/utils/dockerd/files/patches
 rm -rf feeds/luci/applications/luci-app-dockerman
 cp -f package/dockerman/applications/luci-app-dockerman ./feeds/luci/applications/luci-app-dockerman
 sed -i '/auto_start/d' feeds/luci/applications/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
