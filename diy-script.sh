@@ -27,9 +27,6 @@ function git_sparse_clone() {
 # golong1.23依赖
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# immortalwrt_luci
-
-
 # Mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
@@ -159,6 +156,11 @@ cp -f $GITHUB_WORKSPACE/patch/firewall4/100-openwrt-firewall4-add-custom-nft-com
 mkdir -p package/firmware/linux-firmware/patches
 cp -f $GITHUB_WORKSPACE/patch/linux-firmware/*.patch package/firmware/linux-firmware/patches/
 sed -i '/I915/d' target/linux/x86/64/config-6.6
+
+# dnsmasq
+cp -f $GITHUB_WORKSPACE/patch/dnsmasq/dnsmasq.init package/network/services/dnsmasq/files/dnsmasq.init
+mkdir -p package/network/services/dnsmasq/files/patches
+cp -f $GITHUB_WORKSPACE/patch/dnsmasq/0001-dnsmasq-drop-extraconftext-parameter.patch package/network/services/dnsmasq/files/patches/
 
 # Docker 容器
 mkdir -p feeds/packages/utils/dockerd/files/patches
