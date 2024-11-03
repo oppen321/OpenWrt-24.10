@@ -100,11 +100,11 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/luci-lib-d
 
 # 自定义设置
 mkdir -p package/base-files/files/etc/patches
-cp -f $GITHUB_WORKSPACE/patch/base-files/001-config_generate.patch ./package/network/config/firewall4/patches/
+cp -f $GITHUB_WORKSPACE/patch/base-files/001-config_generate.patch package/network/config/firewall4/patches/
 
 #更改主机名
 mkdir -p package/base-files/files/bin/patches
-cp -f $GITHUB_WORKSPACE/patch/base-files/000-config_generate.patch .package/base-files/files/bin/patches/
+cp -f $GITHUB_WORKSPACE/patch/base-files/000-config_generate.patch package/base-files/files/bin/patches/
 
 # 个性化设置
 echo -e "\nmsgid \"Control\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
