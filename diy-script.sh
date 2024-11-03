@@ -92,10 +92,17 @@ git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFil
 # 实时监控
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 
+# Dockerman
+git clone --depth=1 https://github.com/lisaac/luci-app-dockerman package/luci-app-netdata
+
 # 自定义设置
+mkdir -p package/base-files/files/etc/patches
+cp -f $GITHUB_WORKSPACE/patch/base-files/000-config_generate.patch ./package/network/config/firewall4/patches/
 cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 
 #更改主机名
+mkdir -p package/base-files/files/bin/patches
+cp -f $GITHUB_WORKSPACE/patch/base-files/001-config_generate.patch .package/base-files/files/bin/patches/
 sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
 
 # 个性化设置
