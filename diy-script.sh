@@ -125,5 +125,23 @@ sed -i 's/Variable2 = "*.*"/Variable2 = "OpenWrt-24.10"/g' package/luci-app-gpsy
 sed -i 's/Variable3 = "*.*"/Variable3 = "x86_64"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 sed -i 's/Variable4 = "*.*"/Variable4 = "6.6"/g' package/luci-app-gpsysupgrade/root/usr/bin/upgrade.lua
 
+# wirdguard
+cp -f $GITHUB_WORKSPACE/patch/wireguard/* ./target/linux/generic/hack-6.6/
+
+# FW4
+mkdir -p package/network/config/firewall4/patches
+cp -f $GITHUB_WORKSPACE/patch/firewall/firewall4_patches/*.patch ./package/network/config/firewall4/patches/
+cp -f $GITHUB_WORKSPACE/patch/firewall/libnftnl/*
+mkdir -p feeds/luci//applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches
+cp -f $GITHUB_WORKSPACE/patch/firewall4/openwrt-24.10/*.patch ./feeds/luci//applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches/
+
+
+# Shortcut-FE 部分
+
+# intel-firmware
+wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
+wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
+sed -i '/I915/d' target/linux/x86/64/config-6.6
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
