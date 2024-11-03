@@ -142,9 +142,6 @@ sed -i '/ubus_parallel_req/a\        ubus_script_timeout 600;' feeds/packages/ne
 sed -ri "/luci-webui.socket/i\ \t\tuwsgi_send_timeout 600\;\n\t\tuwsgi_connect_timeout 600\;\n\t\tuwsgi_read_timeout 600\;" feeds/packages/net/nginx/files-luci-support/luci.locations
 sed -ri "/luci-cgi_io.socket/i\ \t\tuwsgi_send_timeout 600\;\n\t\tuwsgi_connect_timeout 600\;\n\t\tuwsgi_read_timeout 600\;" feeds/packages/net/nginx/files-luci-support/luci.locations
 
-# wirdguard
-cp -f $GITHUB_WORKSPACE/patch/wireguard/* ./target/linux/generic/hack-6.6/
-
 # FW4
 mkdir -p package/network/config/firewall4/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall/firewall4_patches/*.patch package/network/config/firewall4/patches/
