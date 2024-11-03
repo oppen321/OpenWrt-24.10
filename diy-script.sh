@@ -95,6 +95,9 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netdata package/luci-ap
 # Dockerman
 git clone --depth=1 https://github.com/lisaac/luci-app-dockerman package/luci-app-netdata
 
+# luci-lib-docker
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/luci-lib-docker
+
 # 自定义设置
 mkdir -p package/base-files/files/etc/patches
 cp -f $GITHUB_WORKSPACE/patch/base-files/001-config_generate.patch ./package/network/config/firewall4/patches/
