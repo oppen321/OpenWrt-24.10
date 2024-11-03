@@ -145,20 +145,16 @@ cp -f $GITHUB_WORKSPACE/patch/firewall4/openwrt-24.10/*.patch ./feeds/luci//appl
 mkdir -p package/network/config/firewall4/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch package/network/config/firewall4/patches/
 
-
 # intel-firmware
-wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
-wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
+mkdir -p package/firmware/linux-firmware/patches
+cp -f $GITHUB_WORKSPACE/patch/linux-firmware/*.patch package/firmware/linux-firmware/patches/
 sed -i '/I915/d' target/linux/x86/64/config-6.6
 
 # Docker 容器
 rm -rf ./feeds/luci/applications/luci-app-dockerman
 cp -f package/dockerman/applications/luci-app-dockerman ./feeds/luci/applications/luci-app-dockerman
 sed -i '/auto_start/d' feeds/luci/applications/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
-pushd feeds/packages
-wget -qO- https://github.com/openwrt/packages/commit/e2e5ee69.patch | patch -p1
-wget -qO- https://github.com/openwrt/packages/pull/20054.patch | patch -p1
-popd
+
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 rm -rf $GITHUB_WORKSPACE/feeds/luci/collections/luci-lib-docker
 cp -rf ../docker_lib/collections/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
