@@ -25,7 +25,7 @@
 +				uci.unset('firewall', section_id, 'shortcut_fe');
  				uci.set('firewall', section_id, 'flow_offloading', value === '0' ? null : '1');
  				uci.set('firewall', section_id, 'flow_offloading_hw', value === '2' ? '1' : null);
-+				+				if (value === '3') {
++				if (value === '3') {
 +				uci.unset('firewall', section_id, 'flow_offloading');
 +				uci.unset('firewall', section_id, 'flow_offloading_hw');
 +				uci.set('firewall', section_id, 'shortcut_fe', value === '3' ? '1' : null);
