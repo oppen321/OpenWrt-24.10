@@ -140,8 +140,8 @@ cp -f $GITHUB_WORKSPACE/patch/wireguard/* ./target/linux/generic/hack-6.6/
 mkdir -p package/network/config/firewall4/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall/firewall4_patches/*.patch package/network/config/firewall4/patches/
 cp -f $GITHUB_WORKSPACE/patch/firewall/libnftnl/*
-mkdir -p feeds/luci//applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches
-cp -f $GITHUB_WORKSPACE/patch/firewall4/openwrt-24.10/*.patch feeds/luci//applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches/
+mkdir -p feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches
+cp -f $GITHUB_WORKSPACE/patch/firewall4/openwrt-24.10/*.patch feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches/
 mkdir -p package/network/config/firewall4/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch package/network/config/firewall4/patches/
 
