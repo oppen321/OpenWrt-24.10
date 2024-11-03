@@ -135,13 +135,22 @@ cp -f $GITHUB_WORKSPACE/patch/firewall/libnftnl/*
 mkdir -p feeds/luci//applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches
 cp -f $GITHUB_WORKSPACE/patch/firewall4/openwrt-24.10/*.patch ./feeds/luci//applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/patches/
 
-
-# Shortcut-FE 部分
-
 # intel-firmware
 wget -qO - https://github.com/openwrt/openwrt/commit/9c58add.patch | patch -p1
 wget -qO - https://github.com/openwrt/openwrt/commit/64f1a65.patch | patch -p1
 sed -i '/I915/d' target/linux/x86/64/config-6.6
+
+# Docker 容器
+rm -rf ./feeds/luci/applications/luci-app-dockerman
+cp -f package/dockerman/applications/luci-app-dockerman ./feeds/luci/applications/luci-app-dockerman
+sed -i '/auto_start/d' feeds/luci/applications/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
+pushd feeds/packages
+wget -qO- https://github.com/openwrt/packages/commit/e2e5ee69.patch | patch -p1
+wget -qO- https://github.com/openwrt/packages/pull/20054.patch | patch -p1
+popd
+sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+rm -rf ./feeds/luci/collections/luci-lib-docker
+cp -rf ../docker_lib/collections/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
