@@ -157,7 +157,7 @@ cp -f package/dockerman/applications/luci-app-dockerman ./feeds/luci/application
 sed -i '/auto_start/d' feeds/luci/applications/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 cp -f $GITHUB_WORKSPACE/patch/docker/*.patch feeds/package/utils/dockerd/files/patches/
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
-rm -rf $GITHUB_WORKSPACE/feeds/luci/collections/luci-lib-docker
+rm -rf feeds/luci/collections/luci-lib-docker
 cp -rf $GITHUB_WORKSPACE/docker_lib/collections/luci-lib-docker ./feeds/luci/collections/luci-lib-docker
 
 ./scripts/feeds update -a
