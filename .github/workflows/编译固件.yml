@@ -17,7 +17,11 @@ env:
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: x86_64
   TZ: Asia/Shanghai
-  VERSION: 6.6
+  mirror: init2.cooluc.com
+  gitea: git.cooluc.com
+  github: github.com
+  
+  
 
 jobs:
   Build:
