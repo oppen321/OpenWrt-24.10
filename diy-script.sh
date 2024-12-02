@@ -14,7 +14,6 @@ rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardho
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/packages/lang/golang
-rm -rf feeds/packages/net/samba4
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -37,6 +36,23 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-a
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
+# Alist
+git clone --depth=1 https://github.com/sbwml/luci-app-alist package/alist
+
+# Mosdns
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+# Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
+rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
+git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
+git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
+git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
+git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
+git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+
+# Adguardhome
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
 # 必要的补丁
 pushd feeds/luci
