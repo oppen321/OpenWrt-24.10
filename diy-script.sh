@@ -68,10 +68,10 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 
 # default settings
-git clone https://$github/sbwml/default-settings package/new/default-settings -b openwrt-24.10
+git clone https://github.com/sbwml/default-settings package/new/default-settings -b openwrt-24.10
 
 # Theme
-git clone --depth 1 https://$github/sbwml/luci-theme-argon package/new/luci-theme-argon
+git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/new/luci-theme-argon
 
 # frpc名称
 sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
