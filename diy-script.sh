@@ -102,3 +102,6 @@ echo -n "$(date +'%Y%m%d')" > package/base-files/files/etc/openwrt_version
 pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
+
+./scripts/feeds update -a
+./scripts/feeds install -a
