@@ -29,12 +29,8 @@ function git_sparse_clone() {
 #git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
-# 科学上网插件
-git clone --depth=1 -b master https://github.com/fw876/helloworld package/luci-app-ssr-plus
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
-git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
+# SSRP & Passwall
+git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
 
 # Alist
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/alist
@@ -53,6 +49,44 @@ git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 
 # Adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
+
+# DDNS.to
+git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
+git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
+
+# iStore
+git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+git_sparse_clone main https://github.com/linkease/istore luci
+
+# 在线更新
+git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
+
+# 修改名称
+sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
+
+# 自定义设置
+cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
+
+# default settings
+git clone https://$github/sbwml/default-settings package/new/default-settings -b openwrt-24.10
+
+# Theme
+git clone --depth 1 https://$github/sbwml/luci-theme-argon package/new/luci-theme-argon
+
+# frpc名称
+sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
+sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
+
+# default config
+sed -i 's/#aio read size = 0/aio read size = 0/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#aio write size = 0/aio write size = 0/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/invalid users = root/#invalid users = root/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/bind interfaces only = yes/bind interfaces only = no/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#create mask/create mask/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/#directory mask/directory mask/g' feeds/packages/net/samba4/files/smb.conf.template
+sed -i 's/0666/0644/g;s/0744/0755/g;s/0777/0755/g' feeds/luci/applications/luci-app-samba4/htdocs/luci-static/resources/view/samba4.js
+sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/samba.config
+sed -i 's/0666/0644/g;s/0777/0755/g' feeds/packages/net/samba4/files/smb.conf.template
 
 # 必要的补丁
 pushd feeds/luci
