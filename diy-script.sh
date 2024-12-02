@@ -55,13 +55,19 @@ git_sparse_clone master https://github.com/linkease/nas-packages network/service
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
 
-# Docker
+# Dockerman
 rm -rf feeds/luci/collections/luci-lib-docker
 rm -rf feeds/luci/applications/luci-app-dockerman
 git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
 git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/luci-lib-docker
 cp -r package/luci-lib-docker feeds/luci/collections
 cp -r package/luci-app-dockerman feeds/luci/applications
+
+# Diskman
+mkdir -p package/luci-app-diskman && \
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
+mkdir -p package/parted && \
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O package/parted/Makefile
 
 # 在线更新
 git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
