@@ -27,7 +27,7 @@ function git_sparse_clone() {
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://$github/sbwml/openwrt_helloworld package/new/helloworld -b v5
+git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
 
 # Alist
 git clone --depth=1 https://github.com/sbwml/luci-app-alist package/alist
