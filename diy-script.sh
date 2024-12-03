@@ -67,6 +67,13 @@ cp -r package/luci-app-dockerman feeds/luci/applications
 git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-diskman
 git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages utils/parted
 
+# Socat
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages net/socat
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-socat
+
+# Lucky
+git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
+
 # 在线更新
 git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
 
