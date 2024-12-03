@@ -84,6 +84,9 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-
 # 在线更新
 git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
 
+# 释放内存
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-ramfree
+
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 
