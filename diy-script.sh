@@ -74,6 +74,9 @@ git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/
 # Lucky
 git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
 
+# 一键配置拨号
+git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
+
 # 在线更新
 git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
 
@@ -92,6 +95,9 @@ cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-a
 
 # OpenAppFilter
 git clone https://github.com/sbwml/OpenAppFilter --depth=1 package/OpenAppFilter
+
+# luci-app-partexp
+git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # luci-compat - fix translation
 sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
