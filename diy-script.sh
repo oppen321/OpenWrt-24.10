@@ -75,7 +75,7 @@ git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/
 git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-cpufreq
 
 # Netdata
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages net/netdata
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages admin/netdata
 git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-netdata
 
 # Lucky
