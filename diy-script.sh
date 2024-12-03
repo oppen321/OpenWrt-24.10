@@ -64,10 +64,8 @@ cp -r package/luci-lib-docker feeds/luci/collections
 cp -r package/luci-app-dockerman feeds/luci/applications
 
 # Diskman
-mkdir -p package/luci-app-diskman && \
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
-mkdir -p package/parted && \
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O package/parted/Makefile
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-diskman
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages utils/parted
 
 # 在线更新
 git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
@@ -85,7 +83,15 @@ git clone https://github.com/sbwml/default-settings package/new/default-settings
 git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/new/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
+# OpenAppFilter
+git clone https://github.com/sbwml/OpenAppFilter --depth=1 package/OpenAppFilter
+
+# luci-compat - fix translation
+sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
+
 # frpc名称
+sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
 sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
 sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
