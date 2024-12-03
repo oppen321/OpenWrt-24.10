@@ -71,6 +71,10 @@ git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages utils/par
 git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages net/socat
 git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-socat
 
+# Netdata
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages net/netdata
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-netdata
+
 # Lucky
 git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
 
