@@ -99,6 +99,9 @@ git clone https://github.com/sbwml/OpenAppFilter --depth=1 package/OpenAppFilter
 # luci-app-partexp
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
+# luci-app-webdav
+git clone https://github.com/sbwml/luci-app-webdav package/new/luci-app-webdav
+
 # luci-compat - fix translation
 sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
 sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
