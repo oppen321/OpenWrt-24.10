@@ -83,6 +83,7 @@ git clone https://github.com/sbwml/default-settings package/new/default-settings
 
 # Theme
 git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/new/luci-theme-argon
+cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
 # frpc名称
 sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
