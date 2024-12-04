@@ -47,10 +47,6 @@ git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
 # Adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
-# DDNS.to
-git_sparse_clone main https://github.com/linkease/nas-packages-luci luci/luci-app-ddnsto
-git_sparse_clone master https://github.com/linkease/nas-packages network/services/ddnsto
-
 # iStore
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
@@ -63,21 +59,6 @@ git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/luci-lib-d
 cp -r package/luci-lib-docker feeds/luci/collections
 cp -r package/luci-app-dockerman feeds/luci/applications
 
-# Diskman
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-diskman
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages utils/parted
-
-# Socat
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages net/socat
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-socat
-
-# cpufreq
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-cpufreq
-
-# Netdata
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages admin/netdata
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-netdata
-
 # Lucky
 git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
 
@@ -86,9 +67,6 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-
 
 # 在线更新
 git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
-
-# 释放内存
-git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/luci applications/luci-app-ramfree
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
@@ -120,6 +98,8 @@ sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view
 sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
 sed -i 's,frp 服务器,FRP 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
 sed -i 's,frp 客户端,FRP 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
+
+sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/luci-app-netwizard/luasrc/controller/*.lua
 
 # default config
 sed -i 's/#aio read size = 0/aio read size = 0/g' feeds/packages/net/samba4/files/smb.conf.template
