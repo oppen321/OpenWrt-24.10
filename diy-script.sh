@@ -62,6 +62,9 @@ cp -r package/luci-app-dockerman feeds/luci/applications
 # Lucky
 git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
 
+# Zero-package
+git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
+
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 
