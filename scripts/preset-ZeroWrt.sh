@@ -24,7 +24,6 @@ print_header() {
     color_output "\e[35m\          Z e r o W r t   By   Z e r o      / \e[0m"
     color_output "\e[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\e[0m"
     color_output "==============================================="
-    color_output "  博客地址: https://www.kejizero.online      "
     color_output "                               版本: 1.0.0 "
     color_output "                               作者: Zero  "
     color_output "                               日期: $(date +'%Y-%m-%d') "
@@ -93,7 +92,7 @@ change_password() {
 # 3. 切换默认主题
 change_theme() {
     # 使用 UCI 修改 luci 配置
-    uci set luci.main.mediaurlbase='/luci-static/design'
+    uci set luci.main.mediaurlbase='/luci-static/bootstrap'
     uci commit luci
     echo "主题已成功切换为设计主题。"
     printf "按 Enter 键返回菜单..."
