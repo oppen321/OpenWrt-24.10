@@ -99,3 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 autoload -U compinit && compinit
+if [ -x /bin/ZeroWrt ]; then
+    /bin/ZeroWrt
+fi
