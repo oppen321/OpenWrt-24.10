@@ -3,8 +3,8 @@ name: 编译固件-24.10
 on:
 #  repository_dispatch:
   workflow_dispatch:
-#  schedule:
-#    - cron: 0 19 * * *
+  schedule:
+    - cron: 0 19 * * *
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
