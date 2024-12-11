@@ -51,13 +51,31 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome 
 git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
 git_sparse_clone main https://github.com/linkease/istore luci
 
-# Dockerman
-rm -rf feeds/luci/collections/luci-lib-docker
+# Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
-git_sparse_clone master https://github.com/lisaac/luci-app-dockerman applications/luci-app-dockerman
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker package/luci-lib-docker
-cp -r package/luci-lib-docker feeds/luci/collections
-cp -r package/luci-app-dockerman feeds/luci/applications
+git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-23.05 feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
+git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+pushd feeds/packages
+    curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s $mirror/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+popd
+
+# fstools
+rm -rf package/system/fstools
+git clone https://github.com/sbwml/package_system_fstools -b openwrt-24.10 package/system/fstools
+
+# util-linux
+rm -rf package/utils/util-linux
+git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 package/utils/util-linux
+
+# Shortcut Forwarding Engine
+git clone https://git.cooluc.com/sbwml/shortcut-fe package/new/shortcut-fe
 
 # Lucky
 git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
