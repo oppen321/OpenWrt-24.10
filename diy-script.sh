@@ -119,12 +119,6 @@ git clone https://github.com/sbwml/luci-app-webdav package/new/luci-app-webdav
 # FullCone module
 git clone https://git.cooluc.com/sbwml/nft-fullcone package/new/nft-fullcone
 
-# IPv6 NAT
-git clone https://git.cooluc.com/sbwml/packages_new_nat6 package/new/nat6
-
-# natflow
-git clone https://git.cooluc.com/sbwml/package_new_natflow package/new/natflow
-
 # luci-compat - fix translation
 sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
 sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
