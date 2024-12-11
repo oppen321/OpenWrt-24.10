@@ -55,16 +55,21 @@ git_sparse_clone main https://github.com/linkease/istore luci
 rm -rf feeds/luci/applications/luci-app-dockerman
 git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-23.05 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://$github/sbwml/packages_utils_docker feeds/packages/utils/docker
-git clone https://$github/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://$github/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://$github/sbwml/packages_utils_runc feeds/packages/utils/runc
+git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
+git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
-    curl -s $mirror/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
-    curl -s $mirror/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
-    curl -s $mirror/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/docker/0002-docker-add-buildkit-experimental-support.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/docker/0003-dockerd-disable-ip6tables-for-bridge-network-by-defa.patch | patch -p1
 popd
+
+# UPnP
+rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+git clone https://git.cooluc.com/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
+git clone https://git.cooluc.com/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
 # fstools
 rm -rf package/system/fstools
