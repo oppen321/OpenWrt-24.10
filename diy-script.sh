@@ -116,6 +116,15 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-ap
 # luci-app-webdav
 git clone https://github.com/sbwml/luci-app-webdav package/new/luci-app-webdav
 
+# FullCone module
+git clone https://git.cooluc.com/sbwml/nft-fullcone package/new/nft-fullcone
+
+# IPv6 NAT
+git clone https://git.cooluc.com/sbwml/packages_new_nat6 package/new/nat6
+
+# natflow
+git clone https://git.cooluc.com/sbwml/package_new_natflow package/new/natflow
+
 # luci-compat - fix translation
 sed -i 's/<%:Up%>/<%:Move up%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
 sed -i 's/<%:Down%>/<%:Move down%>/g' feeds/luci/modules/luci-compat/luasrc/view/cbi/tblsection.htm
@@ -155,6 +164,22 @@ echo -n "$(date +'%Y%m%d')" > package/base-files/files/etc/openwrt_version
 pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
+
+# Patch Luci add nft_fullcone/bcm_fullcone & shortcut-fe & natflow & ipv6-nat & custom nft command option
+pushd feeds/luci
+    curl -s https://init.cooluc.com/openwrt/patch/firewall4/luci-24.10/0001-luci-app-firewall-add-nft-fullcone-and-bcm-fullcone-.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/firewall4/luci-24.10/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/firewall4/luci-24.10/0003-luci-app-firewall-add-ipv6-nat-option.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/firewall4/luci-24.10/0004-luci-add-firewall-add-custom-nft-rule-support.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/firewall4/luci-24.10/0005-luci-app-firewall-add-natflow-offload-support.patch | patch -p1
+    curl -s https://init.cooluc.com/openwrt/patch/firewall4/luci-24.10/0006-luci-app-firewall-enable-hardware-offload-only-on-de.patch | patch -p1
+popd
+
+# NTP
+sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
+sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
