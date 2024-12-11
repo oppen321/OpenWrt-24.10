@@ -79,9 +79,6 @@ git clone https://github.com/sbwml/package_system_fstools -b openwrt-24.10 packa
 rm -rf package/utils/util-linux
 git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 package/utils/util-linux
 
-# Shortcut Forwarding Engine
-git clone https://git.cooluc.com/sbwml/shortcut-fe package/new/shortcut-fe
-
 # Lucky
 git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
 
