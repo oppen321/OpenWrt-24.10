@@ -42,15 +42,19 @@ show_menu() {
     echo "2. 更改管理员密码"
     echo "3. 切换默认主题"
     echo "4. 恢复出厂设置"
+    echo "5. 一键换源"
+    echo "6. 安装 ShellClash"
     echo "0. 退出"
     echo "=============================="
-    printf "请输入您的选择 [0-4]: "
+    printf "请输入您的选择 [0-6]: "
     read choice
     case "$choice" in
         1) change_ip ;;
         2) change_password ;;
         3) change_theme ;;
         4) reset_config ;;
+        5) change_source ;;
+        6) install_shellclash ;;
         0) exit 0 ;;
         *) echo "无效选项，请重新输入"; show_menu ;;
     esac
@@ -78,7 +82,6 @@ change_password() {
     printf "请输入新的管理员密码："
     read new_password
     if [[ -n "$new_password" ]]; then
-        # 使用 OpenWrt 的 `passwd` 工具更新密码
         echo -e "$new_password\n$new_password" | passwd root
         echo "管理员密码已成功更改。"
     else
@@ -91,7 +94,6 @@ change_password() {
 
 # 3. 切换默认主题
 change_theme() {
-    # 使用 UCI 修改 luci 配置
     uci set luci.main.mediaurlbase='/luci-static/bootstrap'
     uci commit luci
     echo "主题已成功切换为设计主题。"
@@ -107,6 +109,63 @@ reset_config() {
     echo "设备将在 5 秒钟后重启..."
     sleep 5
     reboot
+}
+
+# 5. 一键换源
+change_source() {
+    echo "请选择要使用的源："
+    echo "1. 阿里源"
+    echo "2. 清华源"
+    echo "3. 中科大源"
+    echo "4. 官方源"
+    echo "0. 返回"
+    printf "请输入您的选择 [0-4]: "
+    read source_choice
+
+    case "$source_choice" in
+        1) base_url="https://mirrors.aliyun.com/openwrt/releases/24.10.0-rc2/packages/x86_64" ;;
+        2) base_url="https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/24.10.0-rc2/packages/x86_64" ;;
+        3) base_url="https://mirrors.ustc.edu.cn/openwrt/releases/24.10.0-rc2/packages/x86_64" ;;
+        4) base_url="https://downloads.openwrt.org/releases/24.10.0-rc2/packages/x86_64" ;;
+        0) show_menu ; return ;;
+        *) echo "无效选项，返回菜单。"; show_menu ; return ;;
+    esac
+
+    cat <<EOF > /etc/opkg/distfeeds.conf
+src/gz openwrt_base $base_url/base
+src/gz openwrt_luci $base_url/luci
+src/gz openwrt_packages $base_url/packages
+src/gz openwrt_routing $base_url/routing
+src/gz openwrt_telephony $base_url/telephony
+EOF
+
+    echo "软件源已成功切换。"
+    printf "按 Enter 键返回菜单..."
+    read
+    show_menu
+}
+
+# 6. 安装 ShellClash
+install_shellclash() {
+    echo "请选择 ShellClash 的安装源："
+    echo "1. GitHub 源"
+    echo "2. jsDelivr CDN 源"
+    echo "0. 返回"
+    printf "请输入您的选择 [0-2]: "
+    read install_choice
+
+    case "$install_choice" in
+        1) export url='https://raw.githubusercontent.com/juewuy/ShellCrash/master' ;;
+        2) export url='https://fastly.jsdelivr.net/gh/juewuy/ShellCrash@master' ;;
+        0) show_menu ; return ;;
+        *) echo "无效选项，返回菜单。"; show_menu ; return ;;
+    esac
+
+    sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
+    echo "ShellClash 已成功安装。"
+    printf "按 Enter 键返回菜单..."
+    read
+    show_menu
 }
 
 # 启动菜单
