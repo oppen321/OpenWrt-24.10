@@ -169,6 +169,7 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 # ZeroWrt选项菜单
 mkdir -p files/bin
 cp -f $GITHUB_WORKSPACE/Diy/ZeroWrt files/bin/ZeroWrt
+chmod +x files/bin/ZeroWrt
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
