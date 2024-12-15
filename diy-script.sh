@@ -166,5 +166,9 @@ sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin
 sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 
+# ZeroWrt选项菜单
+mkdir -p files/bin
+cp -f $GITHUB_WORKSPACE/Diy/ZeroWrt files/bin/ZeroWrt
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
