@@ -35,6 +35,7 @@ print_header() {
 
 # 显示菜单
 show_menu() {
+    clear
     echo "=============================="
     echo "          ZeroWrt 菜单         "
     echo "=============================="
