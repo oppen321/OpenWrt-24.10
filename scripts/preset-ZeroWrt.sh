@@ -24,7 +24,7 @@ print_header() {
     color_output "\e[35m\          Z e r o W r t   By   Z e r o      / \e[0m"
     color_output "\e[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\e[0m"
     color_output "==============================================="
-    color_output "                               版本: 1.0.0 "
+    color_output "                               版本: 1.0.1 "
     color_output "                               作者: Zero  "
     color_output "                               日期: $(date +'%Y-%m-%d') "
     color_output "==============================================="
@@ -128,7 +128,7 @@ change_source() {
         3) base_url="https://mirrors.ustc.edu.cn/openwrt/releases/24.10.0-rc2/packages/x86_64" ;;
         4) base_url="https://downloads.openwrt.org/releases/24.10.0-rc2/packages/x86_64" ;;
         0) show_menu ; return ;;
-        *) echo "无效选项，返回菜单。"; show_menu ; return ;;
+        *) echo "无效选项，返回菜单。" ; show_menu ; return ;;
     esac
 
     cat <<EOF > /etc/opkg/distfeeds.conf
@@ -158,7 +158,7 @@ install_shellclash() {
         1) export url='https://raw.githubusercontent.com/juewuy/ShellCrash/master' ;;
         2) export url='https://fastly.jsdelivr.net/gh/juewuy/ShellCrash@master' ;;
         0) show_menu ; return ;;
-        *) echo "无效选项，返回菜单。"; show_menu ; return ;;
+        *) echo "无效选项，返回菜单。" ; show_menu ; return ;;
     esac
 
     sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
