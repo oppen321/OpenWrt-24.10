@@ -35,7 +35,6 @@ print_header() {
 
 # 显示菜单
 show_menu() {
-    clear
     echo "=============================="
     echo "          ZeroWrt 菜单         "
     echo "=============================="
@@ -73,8 +72,7 @@ change_ip() {
     else
         echo "无效的 IP 地址，操作取消。"
     fi
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."  # 等待用户按下 Enter 键
     show_menu
 }
 
@@ -88,8 +86,7 @@ change_password() {
     else
         echo "无效的密码，操作取消。"
     fi
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."  # 等待用户按下 Enter 键
     show_menu
 }
 
@@ -98,8 +95,7 @@ change_theme() {
     uci set luci.main.mediaurlbase='/luci-static/bootstrap'
     uci commit luci
     echo "主题已成功切换为设计主题。"
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."  # 等待用户按下 Enter 键
     show_menu
 }
 
@@ -128,10 +124,11 @@ change_source() {
         2) base_url="https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/24.10.0-rc2/packages/x86_64" ;;
         3) base_url="https://mirrors.ustc.edu.cn/openwrt/releases/24.10.0-rc2/packages/x86_64" ;;
         4) base_url="https://downloads.openwrt.org/releases/24.10.0-rc2/packages/x86_64" ;;
-        0) show_menu ; return ;;
-        *) echo "无效选项，返回菜单。" ; show_menu ; return ;;
+        0) show_menu ;;  # 返回菜单
+        *) echo "无效选项，返回菜单。" ; show_menu ;;  # 无效选项
     esac
 
+    # 更新源
     cat <<EOF > /etc/opkg/distfeeds.conf
 src/gz openwrt_base $base_url/base
 src/gz openwrt_luci $base_url/luci
@@ -141,8 +138,7 @@ src/gz openwrt_telephony $base_url/telephony
 EOF
 
     echo "软件源已成功切换。"
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."  # 等待用户按下 Enter 键
     show_menu
 }
 
@@ -158,14 +154,13 @@ install_shellclash() {
     case "$install_choice" in
         1) export url='https://raw.githubusercontent.com/juewuy/ShellCrash/master' ;;
         2) export url='https://fastly.jsdelivr.net/gh/juewuy/ShellCrash@master' ;;
-        0) show_menu ; return ;;
-        *) echo "无效选项，返回菜单。" ; show_menu ; return ;;
+        0) show_menu ;;  # 返回菜单
+        *) echo "无效选项，返回菜单。" ; show_menu ;;  # 无效选项
     esac
 
     sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
     echo "ShellClash 已成功安装。"
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."  # 等待用户按下 Enter 键
     show_menu
 }
 
