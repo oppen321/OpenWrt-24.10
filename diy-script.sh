@@ -158,7 +158,6 @@ echo -n "$(date +'%Y%m%d')" > package/base-files/files/etc/openwrt_version
 # 必要的补丁
 pushd feeds/luci
     curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
-    curl -s https://init2.cooluc.com/openwrt/patch/firewall4/luci-24.10/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
 popd
 
 # NTP
@@ -171,11 +170,6 @@ sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/f
 mkdir -p files/bin
 cp -f $GITHUB_WORKSPACE/Diy/ZeroWrt files/bin/ZeroWrt
 chmod +x files/bin/ZeroWrt
-
-# shortcut-fe
-git clone https://git.cooluc.com/sbwml/shortcut-fe package/new/shortcut-fe
-curl -s https://init2.cooluc.com//openwrt/patch/kernel-6.12/net/601-netfilter-export-udp_get_timeouts-function.patch > target/linux/generic/hack-6.6/601-netfilter-export-udp_get_timeouts-function.patch
-curl -s https://init2.cooluc.com//openwrt/patch/kernel-6.12/net/953-net-patch-linux-kernel-to-support-shortcut-fe.patch > target/linux/generic/hack-6.6/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
