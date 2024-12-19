@@ -30,7 +30,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b master
 
 # Alist
-git clone --depth=1 https://github.com/sbwml/luci-app-alist package/alist
+git clone --depth=1 https://git.kejizero.online/zhao/luci-app-alist package/alist
 
 # Mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
@@ -38,11 +38,11 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
-git clone https://github.com/sbwml/package_kernel_r8168 package/kernel/r8168
-git clone https://github.com/sbwml/package_kernel_r8152 package/kernel/r8152
-git clone https://github.com/sbwml/package_kernel_r8101 package/kernel/r8101
-git clone https://github.com/sbwml/package_kernel_r8125 package/kernel/r8125
-git clone https://github.com/sbwml/package_kernel_r8126 package/kernel/r8126
+git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
+git clone https://git.kejizero.online/zhao/package_kernel_r8152 package/kernel/r8152
+git clone https://git.kejizero.online/zhao/package_kernel_r8101 package/kernel/r8101
+git clone https://git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r8125
+git clone https://git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
 
 # Adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
@@ -53,12 +53,12 @@ git_sparse_clone main https://github.com/linkease/istore luci
 
 # Docker
 rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-23.05 feeds/luci/applications/luci-app-dockerman
+git clone https://git.kejizero.online/zhao/luci-app-dockerman -b 24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
-git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
+git clone https://git.kejizero.online/zhao/packages_utils_docker feeds/packages/utils/docker
+git clone https://git.kejizero.online/zhao/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://git.kejizero.online/zhao/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://git.kejizero.online/zhao/packages_utils_runc feeds/packages/utils/runc
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 pushd feeds/packages
     curl -s https://init.cooluc.com/openwrt/patch/docker/0001-dockerd-fix-bridge-network.patch | patch -p1
@@ -68,8 +68,8 @@ popd
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-git clone https://git.cooluc.com/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone https://git.cooluc.com/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
+git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
 
 # fstools
 rm -rf package/system/fstools
@@ -80,7 +80,7 @@ rm -rf package/utils/util-linux
 git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 package/utils/util-linux
 
 # Lucky
-git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/luci-app-lucky
+git clone --depth=1 https://git.kejizero.online/zhao/luci-app-lucky package/luci-app-lucky
 
 # Zero-package
 git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
@@ -89,7 +89,7 @@ git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-packag
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 
 # 在线更新
-git clone --depth=1 https://github.com/oppen321/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
+git clone --depth=1 https://git.kejizero.online/zhao/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
@@ -98,14 +98,14 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 
 # default settings
-git clone https://github.com/sbwml/default-settings package/new/default-settings -b openwrt-24.10
+git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b openwrt-24.10
 
 # Theme
-git clone --depth 1 https://github.com/sbwml/luci-theme-argon package/new/luci-theme-argon
+git clone --depth 1 https://git.kejizero.online/zhao/luci-theme-argon package/new/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
 # OpenAppFilter
-git clone https://github.com/sbwml/OpenAppFilter --depth=1 package/OpenAppFilter
+git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
 
 # luci-app-partexp
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
