@@ -33,16 +33,16 @@ git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/openwrt_
 git clone --depth=1 https://git.kejizero.online/zhao/luci-app-alist package/alist
 
 # Mosdns
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
+git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
+git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
 # Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
 rm -rf package/kernel/r8168 package/kernel/r8101 package/kernel/r8125 package/kernel/r8126
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/package_kernel_r8152 package/kernel/r8152
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/package_kernel_r8101 package/kernel/r8101
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r8125
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
+git clone https://git.kejizero.online/zhao/package_kernel_r8168 package/kernel/r8168
+git clone https://git.kejizero.online/zhao/package_kernel_r8152 package/kernel/r8152
+git clone https://git.kejizero.online/zhao/package_kernel_r8101 package/kernel/r8101
+git clone https://git.kejizero.online/zhao/package_kernel_r8125 package/kernel/r8125
+git clone https://git.kejizero.online/zhao/package_kernel_r8126 package/kernel/r8126
 
 # Adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
@@ -80,7 +80,7 @@ rm -rf package/utils/util-linux
 git clone https://github.com/sbwml/package_utils_util-linux -b openwrt-24.10 package/utils/util-linux
 
 # Lucky
-git clone --depth=1 zhao:${{ secrets.password }}@https://git.kejizero.online/zhao/luci-app-lucky package/luci-app-lucky
+git clone --depth=1 https://git.kejizero.online/zhao/luci-app-lucky package/luci-app-lucky
 
 # Zero-package
 git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-package
@@ -89,7 +89,7 @@ git clone --depth=1 https://github.com/oppen321/Zero-package package/Zero-packag
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/luci-app-netwizard
 
 # 在线更新
-git clone --depth=1 zhao:${{ secrets.password }}@https://git.kejizero.online/zhao/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
+git clone --depth=1 https://git.kejizero.online/zhao/luci-app-gpsysupgrade package/luci-app-gpsysupgrade
 
 # 修改名称
 sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
@@ -101,17 +101,17 @@ cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b openwrt-24.10
 
 # Theme
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
+git clone https://git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
 # OpenAppFilter
-git clone zhao:${{ secrets.password }}@https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
+git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenAppFilter
 
 # luci-app-partexp
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # luci-app-webdav
-git clone zhao:${{ secrets.password }}@https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
+git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
 
 # FullCone module
 git clone https://git.cooluc.com/sbwml/nft-fullcone package/new/nft-fullcone
