@@ -111,7 +111,7 @@ git clone https://git.kejizero.online/zhao/OpenAppFilter --depth=1 package/OpenA
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/luci-app-partexp
 
 # luci-app-webdav
-git clone https://github.com/sbwml/luci-app-webdav package/new/luci-app-webdav
+git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
 
 # FullCone module
 git clone https://git.cooluc.com/sbwml/nft-fullcone package/new/nft-fullcone
