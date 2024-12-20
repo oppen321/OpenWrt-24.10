@@ -98,7 +98,7 @@ sed -i 's/OpenWrt/ZeroWrt/' package/base-files/files/bin/config_generate
 cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 
 # default settings
-git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b openwrt-24.10
+git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b master
 
 # Theme
 git clone --depth 1 https://git.kejizero.online/zhao/luci-theme-argon package/new/luci-theme-argon
