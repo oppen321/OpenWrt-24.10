@@ -101,7 +101,7 @@ cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b openwrt-24.10
 
 # Theme
-git clone --depth 1 https://git.kejizero.online/zhao/luci-theme-argon package/new/luci-theme-argon
+git clone https://zhao:$password@git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
 # OpenAppFilter
