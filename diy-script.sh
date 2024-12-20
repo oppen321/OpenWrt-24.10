@@ -27,13 +27,13 @@ function git_sparse_clone() {
 git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b master
+git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
 # Alist
 git clone --depth=1 https://git.kejizero.online/zhao/luci-app-alist package/alist
 
 # Mosdns
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Realtek 网卡 - R8168 & R8125 & R8126 & R8152 & R8101
@@ -101,7 +101,7 @@ cp -f $GITHUB_WORKSPACE/Diy/banner package/base-files/files/etc/banner
 git clone https://git.kejizero.online/zhao/default-settings package/new/default-settings -b openwrt-24.10
 
 # Theme
-git clone https://zhao:$password@git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
+git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/luci-theme-argon.git package/new/luci-theme-argon
 cp -f $GITHUB_WORKSPACE/images/bg.webp package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 
 # OpenAppFilter
