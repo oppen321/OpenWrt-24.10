@@ -112,6 +112,8 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
+        GIT_USERNAME=${{ secrets.GIT_USERNAME }} \
+        GIT_PASSWORD=${{ secrets.GIT_PASSWORD }} \
         $GITHUB_WORKSPACE/$DIY_SCRIPT
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
