@@ -27,7 +27,7 @@ function git_sparse_clone() {
 git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # SSRP & Passwall
-git clone https://zhao:${{ secrets.password }}@git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
+git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
 
 # Alist
 git clone --depth=1 https://git.kejizero.online/zhao/luci-app-alist package/alist
