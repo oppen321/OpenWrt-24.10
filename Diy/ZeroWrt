@@ -17,7 +17,7 @@ print_header() {
     color_output "\e[35m\          Z e r o W r t   By   Z e r o      / \e[0m"
     color_output "\e[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\e[0m"
     color_output "==============================================="
-    color_output "                               版本: 1.0.1 "
+    color_output "                               版本: 5.0 "
     color_output "                               作者: Zero  "
     color_output "                               日期: $(date +'%Y-%m-%d') "
     color_output "==============================================="
