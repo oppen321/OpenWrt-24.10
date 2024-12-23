@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/bash
 
 # 彩色输出函数
 color_output() {
@@ -17,11 +17,11 @@ print_header() {
     color_output "\e[35m\          Z e r o W r t   By   Z e r o      / \e[0m"
     color_output "\e[31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\e[0m"
     color_output "==============================================="
-    color_output "                               版本: 5.0 "
+    color_output "                               版本: 5.1 "
     color_output "                               作者: Zero  "
     color_output "                               日期: $(date +'%Y-%m-%d') "
     color_output "==============================================="
-    color_output "  本脚本帮助您设置 ZeroWrt。                "
+    color_output "  本脚本帮助您设置 ZeroWrt-24.10。                "
     color_output "  博客地址: https://www.kejizero.online      "
     color_output "==============================================="
 }
@@ -39,8 +39,7 @@ show_menu() {
     echo "6. 安装 ShellClash"
     echo "0. 退出"
     echo "=============================="
-    printf "请输入您的选择 [0-6]: "
-    read choice
+    read -p "请输入您的选择 [0-6]: " choice
     case "$choice" in
         1) change_ip ;;
         2) change_password ;;
@@ -55,8 +54,7 @@ show_menu() {
 
 # 1. 更换 LAN 口 IP 地址
 change_ip() {
-    printf "请输入新的 LAN 口 IP 地址（如 192.168.1.2）："
-    read new_ip
+    read -p "请输入新的 LAN 口 IP 地址（如 192.168.1.2）: " new_ip
     if [[ -n "$new_ip" ]]; then
         uci set network.lan.ipaddr="$new_ip"
         uci commit network
@@ -65,23 +63,20 @@ change_ip() {
     else
         echo "无效的 IP 地址，操作取消。"
     fi
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..." 
     show_menu
 }
 
 # 2. 更改管理员密码
 change_password() {
-    printf "请输入新的管理员密码："
-    read new_password
+    read -p "请输入新的管理员密码: " new_password
     if [[ -n "$new_password" ]]; then
         echo -e "$new_password\n$new_password" | passwd root
         echo "管理员密码已成功更改。"
     else
         echo "无效的密码，操作取消。"
     fi
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."
     show_menu
 }
 
@@ -90,8 +85,7 @@ change_theme() {
     uci set luci.main.mediaurlbase='/luci-static/bootstrap'
     uci commit luci
     echo "主题已成功切换为设计主题。"
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."
     show_menu
 }
 
@@ -112,8 +106,7 @@ change_source() {
     echo "3. 中科大源"
     echo "4. 官方源"
     echo "0. 返回"
-    printf "请输入您的选择 [0-4]: "
-    read source_choice
+    read -p "请输入您的选择 [0-4]: " source_choice
 
     case "$source_choice" in
         1) base_url="https://mirrors.aliyun.com/openwrt/releases/24.10.0-rc3/packages/x86_64" ;;
@@ -133,8 +126,7 @@ src/gz openwrt_telephony $base_url/telephony
 EOF
 
     echo "软件源已成功切换。"
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."
     show_menu
 }
 
@@ -144,8 +136,7 @@ install_shellclash() {
     echo "1. GitHub 源"
     echo "2. jsDelivr CDN 源"
     echo "0. 返回"
-    printf "请输入您的选择 [0-2]: "
-    read install_choice
+    read -p "请输入您的选择 [0-2]: " install_choice
 
     case "$install_choice" in
         1) export url='https://raw.githubusercontent.com/juewuy/ShellCrash/master' ;;
@@ -156,8 +147,7 @@ install_shellclash() {
 
     sh -c "$(curl -kfsSl $url/install.sh)" && source /etc/profile &> /dev/null
     echo "ShellClash 已成功安装。"
-    printf "按 Enter 键返回菜单..."
-    read
+    read -p "按 Enter 键返回菜单..."
     show_menu
 }
 
