@@ -26,6 +26,7 @@ curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE
 curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.6/952-net-conntrack-events-support-multiple-registrant.patch
 curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/953-net-patch-linux-kernel-to-support-shortcut-fe.patch -o target/linux/generic/hack-6.6/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/613-netfilter_optional_tcp_window_check.patch -o target/linux/generic/pending-6.6/613-netfilter_optional_tcp_window_check.patch
+
 # 加入Shortcut-FE开关
 pushd feeds/luci
     curl -s https://init.cooluc.com//openwrt/patch/firewall4/luci-24.10/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
