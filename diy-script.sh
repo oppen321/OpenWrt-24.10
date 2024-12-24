@@ -21,6 +21,17 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
+#ZeroWrt-PATCH
+git clone https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/PATCH package/PATCH
+
+# TCP optimizations
+cp -f package/PATCH/6.7_Boost_For_Single_TCP_Flow/* target/linux/generic/backport-6.6/
+cp -f package/PATCH/6.8_Boost_TCP_Performance_For_Many_Concurrent_Connections-bp_but_put_in_hack/* target/linux/generic/hack-6.6/
+cp -f package/PATCH/6.8_Better_data_locality_in_networking_fast_paths-bp_but_put_in_hack/* target/linux/generic/hack-6.6/
+
+# UDP optimizations
+cp -f package/PATCH/6.7_FQ_packet_scheduling/* target/linux/generic/backport-6.6/
+
 # Shortcut-FE 部分
 curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/601-netfilter-export-udp_get_timeouts-function.patch -o target/linux/generic/hack-6.6/601-netfilter-export-udp_get_timeouts-function.patch
 curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.6/952-net-conntrack-events-support-multiple-registrant.patch
