@@ -32,6 +32,9 @@ cp -f package/PATCH/6.8_Better_data_locality_in_networking_fast_paths-bp_but_put
 # UDP optimizations
 cp -f package/PATCH/6.7_FQ_packet_scheduling/* target/linux/generic/backport-6.6/
 
+# LRNG
+cp -f package/PATCH/lrng/* target/linux/generic/hack-6.6/
+
 # Shortcut-FE 部分
 cp -f package/PATCH/Shortcut-FE/* target/linux/generic/hack-6.6/
 
