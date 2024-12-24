@@ -22,9 +22,9 @@ curl -so files/root/.bash_profile https://$GIT_USERNAME:$GIT_PASSWORD@git.kejize
 curl -so files/root/.bashrc https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
 # Shortcut-FE 部分
-curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/601-netfilter-export-udp_get_timeouts-function.patch ./target/linux/generic/hack-6.6
-curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-6.6
-curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-6.6
+curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/601-netfilter-export-udp_get_timeouts-function.patch -o target/linux/generic/hack-6.6/601-netfilter-export-udp_get_timeouts-function.patch
+curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.6/952-net-conntrack-events-support-multiple-registrant.patch
+curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/953-net-patch-linux-kernel-to-support-shortcut-fe.patch -o target/linux/generic/hack-6.6/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
 
 # 加入Shortcut-FE开关
 pushd feeds/luci
