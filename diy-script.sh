@@ -37,7 +37,7 @@ cp -f package/PATCH/Shortcut-FE/* target/linux/generic/hack-6.6/
 
 # 加入Shortcut-FE开关
 pushd feeds/luci
-    curl -s https://init.cooluc.com//openwrt/patch/firewall4/luci-24.10/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
+    curl -s https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/luci/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
 popd
 
 # BBRv3
