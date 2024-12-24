@@ -26,6 +26,13 @@ curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut
 curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-6.6
 curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-6.6
 
+# 加入Shortcut-FE开关
+pushd feeds/luci
+    curl -s https://init.cooluc.com//openwrt/patch/firewall4/luci-24.10/0002-luci-app-firewall-add-shortcut-fe-option.patch | patch -p1
+popd
+
+
+
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
