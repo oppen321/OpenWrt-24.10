@@ -33,9 +33,7 @@ cp -f package/PATCH/6.8_Better_data_locality_in_networking_fast_paths-bp_but_put
 cp -f package/PATCH/6.7_FQ_packet_scheduling/* target/linux/generic/backport-6.6/
 
 # Shortcut-FE 部分
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/601-netfilter-export-udp_get_timeouts-function.patch -o target/linux/generic/hack-6.6/601-netfilter-export-udp_get_timeouts-function.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-6.6/952-net-conntrack-events-support-multiple-registrant.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/953-net-patch-linux-kernel-to-support-shortcut-fe.patch -o target/linux/generic/hack-6.6/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+cp -f package/PATCH/Shortcut-FE/* target/linux/generic/hack-6.6/
 
 # 加入Shortcut-FE开关
 pushd feeds/luci
@@ -43,24 +41,7 @@ pushd feeds/luci
 popd
 
 # BBRv3
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0001-net-tcp_bbr-broaden-app-limited-rate-sample-detectio.patch -o target/linux/generic/backport-6.6/010-0001-net-tcp_bbr-broaden-app-limited-rate-sample-detectio.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0002-net-tcp_bbr-v2-shrink-delivered_mstamp-first_tx_msta.patch -o target/linux/generic/backport-6.6/010-0002-net-tcp_bbr-v2-shrink-delivered_mstamp-first_tx_msta.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0003-net-tcp_bbr-v2-snapshot-packets-in-flight-at-transmi.patch -o target/linux/generic/backport-6.6/010-0003-net-tcp_bbr-v2-snapshot-packets-in-flight-at-transmi.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0004-net-tcp_bbr-v2-count-packets-lost-over-TCP-rate-samp.patch -o target/linux/generic/backport-6.6/010-0004-net-tcp_bbr-v2-count-packets-lost-over-TCP-rate-samp.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0005-net-tcp_bbr-v2-export-FLAG_ECE-in-rate_sample.is_ece.patch -o target/linux/generic/backport-6.6/010-0005-net-tcp_bbr-v2-export-FLAG_ECE-in-rate_sample.is_ece.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0006-net-tcp_bbr-v2-introduce-ca_ops-skb_marked_lost-CC-m.patch -o target/linux/generic/backport-6.6/010-0006-net-tcp_bbr-v2-introduce-ca_ops-skb_marked_lost-CC-m.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0007-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-merge-in.patch -o target/linux/generic/backport-6.6/010-0007-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-merge-in.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0008-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-split-in.patch -o target/linux/generic/backport-6.6/010-0008-net-tcp_bbr-v2-adjust-skb-tx.in_flight-upon-split-in.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0009-net-tcp-add-new-ca-opts-flag-TCP_CONG_WANTS_CE_EVENT.patch -o target/linux/generic/backport-6.6/010-0009-net-tcp-add-new-ca-opts-flag-TCP_CONG_WANTS_CE_EVENT.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0010-net-tcp-re-generalize-TSO-sizing-in-TCP-CC-module-AP.patch -o target/linux/generic/backport-6.6/010-0010-net-tcp-re-generalize-TSO-sizing-in-TCP-CC-module-AP.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0011-net-tcp-add-fast_ack_mode-1-skip-rwin-check-in-tcp_f.patch -o target/linux/generic/backport-6.6/010-0011-net-tcp-add-fast_ack_mode-1-skip-rwin-check-in-tcp_f.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0012-net-tcp_bbr-v2-record-app-limited-status-of-TLP-repa.patch -o target/linux/generic/backport-6.6/010-0012-net-tcp_bbr-v2-record-app-limited-status-of-TLP-repa.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0013-net-tcp_bbr-v2-inform-CC-module-of-losses-repaired-b.patch -o target/linux/generic/backport-6.6/010-0013-net-tcp_bbr-v2-inform-CC-module-of-losses-repaired-b.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0014-net-tcp_bbr-v2-introduce-is_acking_tlp_retrans_seq-i.patch -o target/linux/generic/backport-6.6/010-0014-net-tcp_bbr-v2-introduce-is_acking_tlp_retrans_seq-i.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0015-tcp-introduce-per-route-feature-RTAX_FEATURE_ECN_LOW.patch -o target/linux/generic/backport-6.6/010-0015-tcp-introduce-per-route-feature-RTAX_FEATURE_ECN_LOW.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0016-net-tcp_bbr-v3-update-TCP-bbr-congestion-control-mod.patch -o target/linux/generic/backport-6.6/010-0016-net-tcp_bbr-v3-update-TCP-bbr-congestion-control-mod.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0017-net-tcp_bbr-v3-ensure-ECN-enabled-BBR-flows-set-ECT-.patch -o target/linux/generic/backport-6.6/010-0017-net-tcp_bbr-v3-ensure-ECN-enabled-BBR-flows-set-ECT-.patch
-curl https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/bbr3/010-0018-tcp-export-TCPI_OPT_ECN_LOW-in-tcp_info-tcpi_options.patch -o target/linux/generic/backport-6.6/010-0018-tcp-export-TCPI_OPT_ECN_LOW-in-tcp_info-tcpi_options.patch
+cp -f package/PATCH/bbr3/* target/linux/generic/backport-6.6/
 
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
