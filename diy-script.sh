@@ -21,6 +21,11 @@ mkdir -p files/root
 curl -so files/root/.bash_profile https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/files/raw/branch/main/root/.bash_profile
 curl -so files/root/.bashrc https://$GIT_USERNAME:$GIT_PASSWORD@git.kejizero.online/zhao/files/raw/branch/main/root/.bashrc
 
+# Shortcut-FE 部分
+curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/601-netfilter-export-udp_get_timeouts-function.patch ./target/linux/generic/hack-6.6
+curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/952-net-conntrack-events-support-multiple-registrant.patch ./target/linux/generic/hack-6.6
+curl -L https://git.kejizero.online/zhao/PATCH/raw/branch/openwrt-24.10/Shortcut-FE/953-net-patch-linux-kernel-to-support-shortcut-fe.patch ./target/linux/generic/hack-6.6
+
 # 移除要替换的包
 rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
