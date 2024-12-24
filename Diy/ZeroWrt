@@ -109,10 +109,10 @@ change_source() {
     read -p "请输入您的选择 [0-4]: " source_choice
 
     case "$source_choice" in
-        1) base_url="https://mirrors.aliyun.com/openwrt/releases/24.10.0-rc3/packages/x86_64" ;;
-        2) base_url="https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/24.10.0-rc3/packages/x86_64" ;;
-        3) base_url="https://mirrors.ustc.edu.cn/openwrt/releases/24.10.0-rc3/packages/x86_64" ;;
-        4) base_url="https://downloads.openwrt.org/releases/24.10.0-rc3/packages/x86_64" ;;
+        1) base_url="https://mirrors.aliyun.com/openwrt/releases/24.10.0-rc4/packages/x86_64" ;;
+        2) base_url="https://mirrors.tuna.tsinghua.edu.cn/openwrt/releases/24.10.0-rc4/packages/x86_64" ;;
+        3) base_url="https://mirrors.ustc.edu.cn/openwrt/releases/24.10.0-rc4/packages/x86_64" ;;
+        4) base_url="https://downloads.openwrt.org/releases/24.10.0-rc4/packages/x86_64" ;;
         0) show_menu ; return ;;
         *) echo "无效选项，返回菜单。" ; show_menu ; return ;;
     esac
